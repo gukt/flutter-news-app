@@ -69,11 +69,6 @@ void main() {
     debugPrint(ContentType.json.toString());
   });
 
-  test('test json', () {
-    var req = LoginRequest(name: 'gukt', password: 'aaa');
-    debugPrint('${req.toJson()}');
-  });
-
   test('Test http get', () async {
     var dio = Dio();
     var res = await dio.get('http://httpbin.org/get');
