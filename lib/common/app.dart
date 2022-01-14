@@ -15,6 +15,11 @@ Logger log = Logger();
 
 const bool debugMode = true;
 
+// const String baseUrl = "http://127.0.0.1:5000/";
+// 真机调试时使用
+const String baseUrl = "http://172.20.10.2:5000/";
+// const String baseUrl = "http://192.168.1.7:5000/";
+
 // === Cache ===
 
 /// 是否启用缓存
@@ -43,11 +48,6 @@ const proxyPort = 8866;
 const int connectTimeout = 10000;
 
 const int receiveTimeout = 5000;
-
-// const String baseUrl = "http://127.0.0.1:5000/";
-// 真机调试时使用
-// const String baseUrl = "http://172.20.10.2:5000/";
-const String baseUrl = "http://192.168.1.7:5000/";
 
 /// 应用程序全局类
 class App {

@@ -4,6 +4,7 @@ import 'package:flutter_news_app/common/extensions/context_ext.dart';
 import 'package:flutter_news_app/common/extensions/widget_ext.dart';
 import 'package:flutter_news_app/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class AccountEditPage extends StatefulWidget {
   const AccountEditPage({Key? key}) : super(key: key);
@@ -46,40 +47,44 @@ class _AccountEditPageState extends State<AccountEditPage> {
                   // Choose plan
                   ListTile(
                     title: Text('Choose your plain', style: context.h4),
-                    trailing: Icon(Icons.info_outline),
+                    trailing: const Icon(Icons.info_outline),
                   ),
-
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const _AccountPlan(
-                              period: 'Month',
-                              price: '9.99',
-                              info: 'Billed every month',
-                              selected: true,
-                            ),
-                            SizedBox(width: 15.w),
-                            const _AccountPlan(
-                              period: 'Year',
-                              price: '4.99/mo',
-                              info: 'Billed every 12 months',
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 15.h),
-                        AppTextButton(
-                          Text(
-                            r'Get Premium - $9.99',
-                            style: context.h4!.copyWith(color: Colors.white),
+                    child: Provider(
+                      create: (_) => _AccountPlanModel(0),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _AccountPlan(
+                                id: 0,
+                                period: 'Month',
+                                price: '9.99',
+                                info: 'Billed every month',
+                              ),
+                              // 固定间隔, 左右两个付费计划 (flex = 1)
+                              SizedBox(width: 15.w),
+                              _AccountPlan(
+                                id: 1,
+                                period: 'Year',
+                                price: '4.99/mo',
+                                info: 'Billed every 12 months',
+                              ),
+                            ],
                           ),
-                          width: double.infinity,
-                          backgroundColor: AppColors.secondarySurface,
-                        ),
-                      ],
+                          SizedBox(height: 15.h),
+                          AppTextButton(
+                            Text(
+                              r'Get Premium - $9.99',
+                              style: context.h4!.copyWith(color: Colors.white),
+                            ),
+                            width: double.infinity,
+                            backgroundColor: AppColors.secondarySurface,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -182,38 +187,31 @@ class _AccountEditPageState extends State<AccountEditPage> {
   }
 }
 
-class _AccountPlan extends StatefulWidget {
-  final String period;
-  final String price;
-  final String info;
-  final bool selected;
-
+/// 账户付费计划组件
+class _AccountPlan extends StatelessWidget {
   const _AccountPlan({
     Key? key,
     required this.period,
     required this.price,
     required this.info,
-    this.selected = false,
+    this.id = 0,
   }) : super(key: key);
 
-  @override
-  _AccountPlanState createState() => _AccountPlanState();
-}
-
-class _AccountPlanState extends State<_AccountPlan> {
-  static bool _selected = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _selected = widget.selected;
-  }
+  final String period;
+  final String price;
+  final String info;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('building _AccountPlanState');
+    debugPrint('building  _AccountPlanState');
+    _AccountPlanModel model = context.watch<_AccountPlanModel>();
+    _AccountPlanModel model2 =
+        Provider.of<_AccountPlanModel>(context, listen: false);
+
+    bool active = model.selected == id;
     Color? outlineColor =
-        _selected ? AppColors.tertiaryText : AppColors.dividerColor;
+        active ? AppColors.tertiaryText : AppColors.dividerColor;
     return Expanded(
       flex: 1,
       child: Container(
@@ -231,11 +229,11 @@ class _AccountPlanState extends State<_AccountPlan> {
               color: outlineColor,
             ),
             SizedBox(height: 15.h),
-            Text(widget.period, style: context.h4),
-            Text('\$ ${widget.price}', style: context.h4),
+            Text(period, style: context.h4),
+            Text('\$ $price', style: context.h4),
             SizedBox(height: 8.h),
             Text(
-              widget.info,
+              info,
               maxLines: 1,
               overflow: TextOverflow.clip,
               style: context.subtitle2,
@@ -243,10 +241,35 @@ class _AccountPlanState extends State<_AccountPlan> {
           ],
         ),
       ).onTap(() {
-        setState(() {
-          _selected = !_selected;
-        });
+        //   如何通知?
+        model.select(id);
       }),
     );
   }
 }
+
+class _AccountPlanModel with ChangeNotifier {
+  _AccountPlanModel([this.selected = 0]);
+
+  int selected;
+
+  select(int id) {
+    selected = id;
+    notifyListeners();
+  }
+}
+
+
+// class _AccountPlanState extends State<_AccountPlan> {
+//   static bool _actived = false;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _actived = widget.actived;
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+    
+// }

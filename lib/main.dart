@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_news_app/common/app.dart';
 import 'package:flutter_news_app/common/app_theme_data.dart';
+import 'package:flutter_news_app/pages/account/account_edit.dart';
 import 'package:flutter_news_app/pages/app_home.dart';
-import 'package:flutter_news_app/pages/bookmark/bookmarks.dart';
-import 'package:flutter_news_app/pages/search/search_by_category.dart';
-import 'package:flutter_news_app/pages/user/account.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
@@ -104,7 +102,8 @@ class NewsApp extends StatelessWidget {
           themeMode: ThemeMode.light,
           // home: const SignInPage(),
           // home: const SearchByCategoryPage(),
-          home: const AppHomePage(),
+          // home: const AppHomePage(),
+          home: const AccountEditPage(),
           // home: const AccountPage(),
           // home: const SearchPage(),
           // home: const NewsPage2(),

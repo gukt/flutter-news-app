@@ -5,9 +5,9 @@ import 'package:flutter_news_app/pages/bookmark/bookmarks.dart';
 import 'package:flutter_news_app/pages/category/category.dart';
 import 'package:flutter_news_app/pages/news/news_home.dart';
 import 'package:flutter_news_app/pages/search/search_by_category.dart';
-import 'package:flutter_news_app/pages/user/account.dart';
-import 'package:flutter_news_app/pages/user/account_edit.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'account/account_edit.dart';
 
 class AppHomePage extends StatefulWidget {
   const AppHomePage({Key? key}) : super(key: key);
