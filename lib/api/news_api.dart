@@ -24,8 +24,15 @@ class NewsApi {
     return [];
   }
 
+  static Future<NewsEntity?> getRecommendedNews() async {
+    var response = await dio.get('/recommended-news');
+    if (response.data != null) {
+      return NewsEntity.fromJson(response.data);
+    }
+  }
+
   /// 获取新闻分类列表
-  static Future<List<Map<String, String>>> getCategories() async {
+  static Future<List<dynamic>> getCategories() async {
     var response = await dio.get('/categories');
     return response.data ?? [];
   }
@@ -35,4 +42,16 @@ class NewsApi {
     var response = await dio.get('/channels');
     return response.data ?? [];
   }
+
+  /// 获取新闻频道列表
+  static Future<List<String>> getPopularTags() async {
+    var response = await dio.get('/popular-tags');
+    // TODO 写一个 Cast<T, I> ? 利用 extension?
+    // https://stackoverflow.com/questions/52752032/get-subtype-of-generic-list-in-dart
+    if (response.data == null) return [];
+    // _safeCast<List<String>>(response.data);
+    return (response.data as List).map((e) => e as String).toList();
+  }
+
+  static _safeCast<T>(dynamic data) {}
 }

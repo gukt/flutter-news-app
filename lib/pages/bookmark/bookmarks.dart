@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news_app/api/news_api.dart';
 import 'package:flutter_news_app/common/extensions/context_ext.dart';
 import 'package:flutter_news_app/common/models/news_entity.dart';
-import 'package:flutter_news_app/common/ui.dart';
 import 'package:flutter_news_app/widgets/app_news.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,7 +25,7 @@ class BookmarkPage extends StatelessWidget {
           } else {
             _style = 0;
           }
-          _widgets.add(AppNewsListItem(item, style: _style));
+          _widgets.add(AppNewsItem(item, style: _style));
         });
         return Column(children: _widgets);
       },
@@ -57,7 +56,7 @@ class BookmarkPage extends StatelessWidget {
               child: Text('Bookmarks', style: context.h2),
             ),
             const Divider(),
-            buildChannels(context),
+            const AppNewsChannel(),
             const Divider(),
             _buildNewsList(),
           ],

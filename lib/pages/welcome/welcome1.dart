@@ -83,8 +83,7 @@ class WelcomePage1 extends StatelessWidget {
             'assets/images/$leadingImage.png',
             width: 80.w,
             height: 80.w,
-            // TODO ?
-            fit: BoxFit.none,
+            fit: BoxFit.cover,
           ),
           const Spacer(),
           // NOTE: 子节点文本要套在一个容器中，不然会发生 overflow

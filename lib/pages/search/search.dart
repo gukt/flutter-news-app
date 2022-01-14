@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_app/common/app_colors.dart';
+import 'package:flutter_news_app/api/news_api.dart';
+import 'package:flutter_news_app/common/app.dart';
 import 'package:flutter_news_app/common/extensions/context_ext.dart';
-import 'package:flutter_news_app/common/ui.dart';
+import 'package:flutter_news_app/common/extensions/widget_ext.dart';
+import 'package:flutter_news_app/common/models/news_entity.dart';
+import 'package:flutter_news_app/widgets/app_input.dart';
+import 'package:flutter_news_app/widgets/app_news.dart';
+import 'package:flutter_news_app/widgets/app_section.dart';
 import 'package:flutter_news_app/widgets/app_tag.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,128 +14,86 @@ class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
 
   _buildSearchBar() {
-    return const Text('Search bar');
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.fromLTRB(20.w, 6.h, 20.w, 10.h),
+      child: const AppTextField(
+        hintText: 'Search...',
+      ),
+    );
   }
 
   // Top channels
-  _buildChannels(BuildContext context) {
+  _buildTopChannels(BuildContext context) {
     return Column(
       children: [
-        _buildTitle(context, 'Top channels'),
-        buildChannels(context),
+        AppSection(
+          title: const Text('Top channels'),
+          trailing: const Text('Show All').onTap(() {
+            toast('Show All taped.');
+          }),
+        ),
+        const AppNewsChannel(),
+        const Divider(),
       ],
     );
   }
 
   // Popular tags
   _buildPopularTags(BuildContext context) {
-    final tags = [
-      'music',
-      'today',
-      'trump',
-      'business',
-      'marketing',
-      'mbi',
-      'rock',
-      'sprots',
-      'bloomberg'
-    ];
-    return Column(
-      children: <Widget>[
-        _buildTitle(context, 'Top channels'),
-        AppTagList(tags),
-        SizedBox(height: 20.h),
-      ],
-    );
-  }
-
-  _buildTitle(BuildContext context, String title) {
-    return Container(
-      padding: EdgeInsets.all(20.w),
-      child: Row(
-        children: <Widget>[
-          Text(title, style: context.h4),
-          const Spacer(),
-          Text('Show All', style: context.linkText),
-        ],
-      ),
-    );
-  }
-
-  _buildNewsItem(
-    BuildContext context, {
-    required String title,
-    required String category,
-    required String time,
-  }) {
-    return SizedBox(
-      width: 160.w,
-      child: Column(
-        children: <Widget>[
-          // 封面图
-          Container(
-            color: Colors.amber,
-            width: 160.w,
-            height: 160.w,
-          ),
-          SizedBox(height: 16.h),
-          // 标题
-          Text(title, style: context.h5),
-          SizedBox(height: 10.h),
-          // 分类，时间
-          Row(
-            children: <Widget>[
-              Text(category, style: context.linkText),
-              SizedBox(width: 15.w),
-              Text(
-                time,
-                style: context.bodyText3?.copyWith(
-                  color: AppColors.secondaryText,
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
+    return FutureBuilder(
+      future: NewsApi.getPopularTags(),
+      builder: (context, AsyncSnapshot<List<String>> snapshot) {
+        debugPrint(
+            '_buildPopularTags: $snapshot -- ${snapshot.connectionState}');
+        // if (snapshot.connectionState == ConnectionState.waiting) {
+        //   debugPrint('_buildPopularTags: loading...');
+        //   sleep(const Duration(seconds: 3));
+        //   return const Text('Loading...');
+        // }
+        return Column(
+          children: <Widget>[
+            AppSection(
+              title: const Text('Popular tags'),
+              trailing: const Text('Show All').onTap(() {
+                toast('Show all taped.');
+              }),
+            ),
+            snapshot.hasData
+                ? AppTagList(snapshot.data!)
+                : const Text('No popular tags'),
+            SizedBox(height: 20.h),
+            const Divider(),
+          ],
+        );
+      },
     );
   }
 
   // Hot news
   _buildHotNews(BuildContext context) {
-    return Container(
-      // TODO 设计值为 20，但这里会换行，看看什么情况
-      padding: EdgeInsets.symmetric(horizontal: 16.h),
-      child: Wrap(
-        spacing: 15.w,
-        runSpacing: 20.h,
-        children: <Widget>[
-          _buildTitle(context, 'Hot news'),
-          _buildNewsItem(
-            context,
-            title: 'How China uses LinkedIn to recruit spies abroad',
-            category: 'Politics',
-            time: '•   1m ago',
-          ),
-          _buildNewsItem(
-            context,
-            title: 'How China uses LinkedIn to recruit spies abroad',
-            category: 'Politics',
-            time: '•   1m ago',
-          ),
-          _buildNewsItem(
-            context,
-            title: 'How China uses LinkedIn to recruit spies abroad',
-            category: 'Politics',
-            time: '•   1m ago',
-          ),
-          _buildNewsItem(
-            context,
-            title: 'How China uses LinkedIn to recruit spies abroad',
-            category: 'Politics',
-            time: '•   1m ago',
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        const AppSection(
+          title: Text('Hot news'),
+          trailing: Text('Show All'),
+        ),
+        FutureBuilder(
+          future: NewsApi.getNewsList(),
+          builder: (context, AsyncSnapshot<List<NewsEntity>> snapshot) {
+            if (!snapshot.hasData) {
+              return const Text('No data.');
+            }
+            return Wrap(
+              spacing: 15.w,
+              runSpacing: 20.h,
+              children: snapshot.data!.map((item) {
+                return AppNewsItem(item, style: 1);
+              }).toList(),
+            );
+          },
+        ),
+      ],
     );
   }
 
@@ -141,12 +104,11 @@ class SearchPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            // Search bar
             _buildSearchBar(),
             const Divider(height: 1),
-            _buildChannels(context),
-            const Divider(height: 1),
+            _buildTopChannels(context),
             _buildPopularTags(context),
-            const Divider(height: 1),
             _buildHotNews(context),
           ],
         ),

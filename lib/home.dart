@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_app/common/app.dart';
 import 'package:flutter_news_app/common/utils/iconfonts.dart';
 import 'package:flutter_news_app/pages/bookmark/bookmarks.dart';
-import 'package:flutter_news_app/pages/category/category.dart';
-import 'package:flutter_news_app/pages/news/news_home.dart';
+import 'package:flutter_news_app/pages/news/news.dart';
+import 'package:flutter_news_app/pages/search/search.dart';
 import 'package:flutter_news_app/pages/search/search_by_category.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'account/account_edit.dart';
+import 'pages/account/account_edit.dart';
 
-class AppHomePage extends StatefulWidget {
-  const AppHomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<AppHomePage> createState() => _AppHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _AppHomePageState extends State<AppHomePage> {
+class _HomePageState extends State<HomePage> {
   final _elements = [
-    ['Home', IconFonts.home, const HomePage()],
+    ['Home', IconFonts.home, const SearchPage()],
     ['Categories', IconFonts.grid, const SearchByCategoryPage()],
     ['Bookmarks', IconFonts.tag, const BookmarkPage()],
     ['Account', IconFonts.me, const AccountEditPage()],
   ];
-  int _currentIndex = 1;
+  int _currentIndex = 0;
   late PageController _pageController;
 
   @override

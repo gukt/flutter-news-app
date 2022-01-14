@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news_app/api/api.dart';
 import 'package:flutter_news_app/common/app.dart';
+import 'package:flutter_news_app/common/app_borders.dart';
 import 'package:flutter_news_app/common/app_colors.dart';
 import 'package:flutter_news_app/common/extensions/context_ext.dart';
 import 'package:flutter_news_app/common/extensions/time_ext.dart';
@@ -7,11 +9,62 @@ import 'package:flutter_news_app/common/extensions/widget_ext.dart';
 import 'package:flutter_news_app/common/models/news_entity.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+class AppNewsChannel extends StatelessWidget {
+  const AppNewsChannel({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Padding(
+        padding: EdgeInsets.all(20.w),
+        child: FutureBuilder(
+          future: NewsApi.getChannels(),
+          builder: (context, AsyncSnapshot<dynamic> snapshot) {
+            if (snapshot.hasData) {
+              return Wrap(
+                spacing: 20.w,
+                children: snapshot.data.map<Widget>((item) {
+                  return Column(
+                    children: [
+                      // 外层的阴影框效果
+                      Container(
+                        padding: EdgeInsets.all(10.w),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [primaryShadow],
+                        ),
+                        child:
+                            Image.asset('assets/images/channel-${item[1]}.png'),
+                      ),
+                      SizedBox(height: 14.h),
+                      Text(item[0], style: context.subtitle1)
+                    ],
+                  );
+                }).toList(),
+              );
+            } else {
+              return const Text('Failed to load channels');
+            }
+          },
+        ),
+      ),
+    );
+  }
+}
+
 /// 新闻列表项
 ///
 /// 参数:
 /// * [style] 表示排列风格
-class AppNewsListItem extends StatelessWidget {
+class AppNewsItem extends StatelessWidget {
+  const AppNewsItem(
+    this.data, {
+    Key? key,
+    this.style = 0,
+  }) : super(key: key);
+
   final NewsEntity data;
 
   /// 排列风格
@@ -20,12 +73,6 @@ class AppNewsListItem extends StatelessWidget {
   /// * 2 - 无图风格
   /// * 3 - 强调风格 用于顶部推荐
   final int style;
-
-  const AppNewsListItem(
-    this.data, {
-    Key? key,
-    this.style = 0,
-  }) : super(key: key);
 
   /// 构建封面图
   Widget _buildCover({double? width, double? height}) {

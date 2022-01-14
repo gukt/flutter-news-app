@@ -4,7 +4,6 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_news_app/common/provider.dart';
 import 'package:flutter_news_app/common/utils/utils.dart';
 import 'package:logger/logger.dart';
 import 'package:package_info/package_info.dart';
@@ -17,8 +16,8 @@ const bool debugMode = true;
 
 // const String baseUrl = "http://127.0.0.1:5000/";
 // 真机调试时使用
-const String baseUrl = "http://172.20.10.2:5000/";
-// const String baseUrl = "http://192.168.1.7:5000/";
+// const String baseUrl = "http://172.20.10.2:5000/";
+const String baseUrl = "http://192.168.1.7:5000/";
 
 // === Cache ===
 
@@ -75,7 +74,7 @@ class App {
 
   static late final bool offlineLogin;
 
-  static final AppState appState = AppState();
+  // static final AppState appState = AppState();
 
   /// 用户配置信息
   static UserProfile? userProfile;

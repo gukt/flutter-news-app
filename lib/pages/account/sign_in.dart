@@ -7,7 +7,7 @@ import 'package:flutter_news_app/common/extensions/string_ext.dart';
 import 'package:flutter_news_app/common/models/user_profile.dart';
 import 'package:flutter_news_app/common/ui.dart';
 import 'package:flutter_news_app/pages/account/sign_up.dart';
-import 'package:flutter_news_app/pages/app_home.dart';
+import 'package:flutter_news_app/home.dart';
 import 'package:flutter_news_app/widgets/app_input.dart';
 import 'package:flutter_news_app/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -49,7 +49,7 @@ class _SignInState extends State<SignInPage> {
       // 保存用户信息
       App.saveUserProfile(profile);
       // 登陆成功后, 跳转到 AppHomePage
-      App.go(const AppHomePage());
+      App.go(const HomePage());
     } on DioError catch (e) {
       toast(e.error['msg']);
     }

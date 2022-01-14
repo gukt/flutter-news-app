@@ -2,9 +2,10 @@ library ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/api/news_api.dart';
-import 'package:flutter_news_app/common/app_borders.dart';
 import 'package:flutter_news_app/common/extensions/context_ext.dart';
 import 'package:flutter_news_app/common/extensions/widget_ext.dart';
+import 'package:flutter_news_app/common/models/news_entity.dart';
+import 'package:flutter_news_app/widgets/app_news.dart';
 import 'package:flutter_news_app/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,45 +13,14 @@ import 'app.dart';
 
 /// 推荐新闻
 Widget buildRecommended(BuildContext context) {
-  return Padding(
-    padding: EdgeInsets.all(20.w),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(6.w),
-          child: FadeInImage.assetNetwork(
-            image: 'https://placeimg.com/400/300/nature',
-            placeholder: 'assets/loading.gif',
-            width: 335.w,
-            height: 290.h,
-            fit: BoxFit.cover,
-          ).onTap(() {}),
-        ),
-        SizedBox(height: 14.h),
-        // 新闻作者
-        Text('Bloomberg', style: context.subtitle1),
-        SizedBox(height: 10.h),
-        // 新闻标题
-        Text(
-          'The green-blue blooms of toxic algae have been found in Prospect Park',
-          style: context.h3,
-        ).onTap(() {}),
-        SizedBox(height: 10.h),
-        // 附加信息
-        Row(
-          children: [
-            Text('Health', style: context.linkText).onTap(() {
-              toast('Clicked');
-            }),
-            SizedBox(width: 15.w),
-            Text('1 min ago', style: context.subtitle1),
-            const Spacer(),
-            Icon(Icons.more_horiz, size: 24.sp).onTap(() {}),
-          ],
-        ),
-      ],
-    ),
+  return FutureBuilder(
+    future: NewsApi.getRecommendedNews(),
+    builder: (context, AsyncSnapshot<NewsEntity?> snapshot) {
+      if (!snapshot.hasData) {
+        return const Text('No recommended news');
+      }
+      return AppNewsItem(snapshot.data!, style: 1);
+    },
   );
 }
 
@@ -61,61 +31,19 @@ Widget buildCategories() {
     padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 20.w),
     child: FutureBuilder(
       future: NewsApi.getCategories(),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (snapshot.hasData) {
-          return Wrap(
-            spacing: 25.w,
-            children: snapshot.data.map<Widget>((item) {
-              return Text(item['name'], style: context.h4).onTap(() {
-                toast(item['name']);
-              });
-            }).toList(),
-          );
-        } else {
+      builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+        if (!snapshot.hasData) {
           return const Text('Failed to load categories.');
         }
+        return Wrap(
+          spacing: 25.w,
+          children: snapshot.data!.map<Widget>((item) {
+            return Text(item, style: context.h4).onTap(() {
+              toast(item);
+            });
+          }).toList(),
+        );
       },
-    ),
-  );
-}
-
-/// 新闻频道列表
-Widget buildChannels(BuildContext context) {
-  return SingleChildScrollView(
-    scrollDirection: Axis.horizontal,
-    child: Padding(
-      padding: EdgeInsets.all(20.w),
-      child: FutureBuilder(
-        future: NewsApi.getChannels(),
-        builder: (context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.hasData) {
-            return Wrap(
-              spacing: 20.w,
-              children: snapshot.data.map<Widget>((item) {
-                return Column(
-                  children: [
-                    // 外层的阴影框效果
-                    Container(
-                      padding: EdgeInsets.all(10.w),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        boxShadow: [primaryShadow],
-                      ),
-                      child:
-                          Image.asset('assets/images/channel-${item[1]}.png'),
-                    ),
-                    SizedBox(height: 14.h),
-                    Text(item[0], style: context.subtitle1)
-                  ],
-                );
-              }).toList(),
-            );
-          } else {
-            return const Text('Failed to load channels');
-          }
-        },
-      ),
     ),
   );
 }
@@ -153,3 +81,14 @@ Widget buildThirdLogin(BuildContext context) {
     ],
   );
 }
+
+// class AppNoData extends StatelessWidget {
+//   const AppNoData({Key? key, this.label}) : super(key: key);
+
+//   final String? label;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Text(label ?? 'No data');
+//   }
+// }

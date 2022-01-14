@@ -97,7 +97,7 @@ def _gen_news(num):
             # TODO format
             # 生成过去的一个时间
             # createdAt=fake.date_time(),
-            createdAt='2022-01-09 12:00:00',
+            createdAt='2022-01-13 12:00:00',
             # 随机获取一个分类
             category=random.choice(categories),
             # 速记获取一个频道
@@ -116,6 +116,10 @@ def get_news():
     num = pageable.get('number_of_elements', 0)
     return jsonify(_gen_news(num), pageable)
 
+@app.get('/recommended-news')
+def get_recommended_news():
+    """获取推荐新闻"""
+    return jsonify(_gen_news(1)[0]);
 
 @app.get('/news/<int:news_id>/comments')
 def get_comments(news_id):
@@ -143,13 +147,14 @@ def get_new_by_id(id):
 @app.get('/categories')
 def get_categories():
     """获取所有的新闻分类"""
-    result = []
-    for index, value in enumerate(categories):
-        result.append({
-            'id': index + 1,
-            'name': value,
-        })
-    return jsonify(result)
+    return jsonify(categories);
+    # result = []
+    # for index, value in enumerate(categories):
+    #     result.append({
+    #         'id': index + 1,
+    #         'name': value,
+    #     })
+    # return jsonify(result)
 
 @app.get('/channels')
 def get_channels():
@@ -157,8 +162,8 @@ def get_channels():
     return jsonify(channels)
 
 
-@app.get('/tags')
-def get_tags():
+@app.get('/popular-tags')
+def get_popular_tags():
     """获取新闻标签"""
     return jsonify(fake.words(10))
 

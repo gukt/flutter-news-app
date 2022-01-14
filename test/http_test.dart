@@ -24,22 +24,22 @@ void main() {
     }
   });
   test('/sign-in', () async {
-    try {
-      var res = await dio.post('sign-in', data: {
-        'name': 'gukt',
-        'password': '1234+aaaa1',
-      });
-    } on DioError catch (e) {
-      log.e('error:', e.error);
-    }
+    // try {
+    //   var res = await dio.post('sign-in', data: {
+    //     'name': 'gukt',
+    //     'password': '1234+aaaa1',
+    //   });
+    // } on DioError catch (e) {
+    //   log.e('error:', e.error);
+    // }
   });
 
   test('/notfound', () async {
-    try {
-      var res = await dio.post('not-found');
-    } on DioError catch (e) {
-      log.e('error:', e);
-    }
+    // try {
+    //   var res = await dio.post('not-found');
+    // } on DioError catch (e) {
+    //   log.e('error:', e);
+    // }
   });
 
   test('/aaaaa', () {
