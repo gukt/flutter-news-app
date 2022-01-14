@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_app/api/api.dart';
+import 'package:flutter_news_app/api/index.dart';
 import 'package:flutter_news_app/common/app.dart';
 import 'package:flutter_news_app/common/app_borders.dart';
 import 'package:flutter_news_app/common/app_colors.dart';

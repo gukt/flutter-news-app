@@ -165,7 +165,8 @@ def get_channels():
 @app.get('/popular-tags')
 def get_popular_tags():
     """获取新闻标签"""
-    return jsonify(fake.words(10))
+    # return jsonify(fake.words(10))
+    return jsonify(['music', 'today', 'trump', 'business', 'marketing', 'mbi', 'rock', 'sprots', 'bloomberg'])
 
 
 @app.get('/channels/{id}')

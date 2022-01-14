@@ -5,7 +5,6 @@ import 'package:flutter_news_app/common/app.dart';
 import 'package:flutter_news_app/common/app_borders.dart';
 import 'package:flutter_news_app/common/app_colors.dart';
 import 'package:flutter_news_app/common/extensions/extensions.dart';
-import 'package:flutter_news_app/common/extensions/time_ext.dart';
 import 'package:flutter_news_app/common/models/news_entity.dart';
 import 'package:flutter_news_app/common/ui.dart';
 import 'package:flutter_news_app/widgets/app_button.dart';
