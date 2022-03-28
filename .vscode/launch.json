@@ -12,7 +12,7 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "mock-api/app.py",
+                "FLASK_APP": "mock-api-server/app.py",
                 "FLASK_ENV": "development"
             },
             "args": [

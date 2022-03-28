@@ -24,21 +24,21 @@ class AppColors {
 // === 背景颜色 ===
 
   /// [主要的] 背景色 - 白色
-  static const Color primaryBackground = Color.fromRGBO(255, 255, 255, 1);
+  static const Color primaryBackground = Colors.white;
 
   /// [第二种] 背景色 - 灰色
   static const Color secondaryBackground = Color.fromRGBO(246, 246, 246, 1);
 
 // === 表面颜色 ===
 
-  /// [主要的] 组件表明颜色 - 灰色
-  static const Color primarySurface = Color.fromRGBO(246, 246, 246, 1);
+  /// [主要的] 组件表面颜色 - 蓝色
+  static const Color primarySurface = Color.fromRGBO(41, 103, 255, 1);
 
-  /// [第二种] 组件表面颜色 - 蓝色
-  static const Color secondarySurface = Color.fromRGBO(41, 103, 255, 1);
+  /// [第二种] 组件表明颜色 - 灰色
+  static const Color secondarySurface = Color.fromRGBO(246, 246, 246, 1);
 
   /// [第三种] 组件表面颜色 - 石墨色
-  static const Color tertiarySurface = Color.fromRGBO(45, 45, 47, 1);
+  static const Color tertiarySurface = primaryText;
 
 // === 表面颜色 ===
 

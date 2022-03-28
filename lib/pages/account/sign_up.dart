@@ -45,8 +45,8 @@ class SignUpPage extends StatelessWidget {
             ),
             SizedBox(height: 15.h),
             AppTextButton(
-              Text('Create an account', style: context.h4),
-              backgroundColor: AppColors.secondarySurface,
+              text: Text('Create an account', style: context.h4),
+              backgroundColor: AppColors.primarySurface,
               foregroundColor: Colors.white,
               width: double.infinity,
             ),
@@ -61,7 +61,7 @@ class SignUpPage extends StatelessWidget {
             buildThirdLogin(context),
             SizedBox(height: 20.h),
             AppTextButton(
-              const Text('I have an account'),
+              text: const Text('I have an account'),
               width: double.infinity,
               onPressed: () {},
             )

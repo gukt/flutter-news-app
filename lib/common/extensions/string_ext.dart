@@ -15,11 +15,11 @@ extension StringExtensions on String {
   }
 
   /// 是否是邮箱
-  bool get isEmail {
-    if (isEmpty) return false;
-    String reg = '^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*\$';
-    return RegExp(reg).hasMatch(this);
-  }
+  // bool get isEmail {
+  //   if (isEmpty) return false;
+  //   String reg = '^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*\$';
+  //   return RegExp(reg).hasMatch(this);
+  // }
 
   /// 是否是固定电话号码
   bool get isMobilePhoneNumber {

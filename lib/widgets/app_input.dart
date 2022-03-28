@@ -69,7 +69,7 @@ class _AppTextFieldState extends State<AppTextField> {
         hintText: widget.hintText,
         filled: true,
         // 背景色，仅在 [filled] 属性为 true 时才生效
-        fillColor: widget.backgroundColor ?? AppColors.primarySurface,
+        fillColor: widget.backgroundColor ?? AppColors.secondarySurface,
         // 内容内边距，影响高度
         contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 9),
         // 边框样式，默认有下划线边框，如果不需要边框，请设置为 none

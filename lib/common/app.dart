@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:device_info/device_info.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_news_app/common/utils/utils.dart';
 import 'package:logger/logger.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'models/user_profile.dart';
 
@@ -17,7 +17,7 @@ const bool debugMode = true;
 // const String baseUrl = "http://127.0.0.1:5000/";
 // 真机调试时使用
 // const String baseUrl = "http://172.20.10.2:5000/";
-const String baseUrl = "http://192.168.1.7:5000/";
+const String baseUrl = "http://192.168.1.6:5000/";
 
 // === Cache ===
 
@@ -130,6 +130,7 @@ class App {
   }
 
   /// 跳转到指定页面
+  @Deprecated('使用 Get 框架的 Get.to')
   static void go(Widget route) {
     navKey.currentState!.push<void>(
       MaterialPageRoute<void>(
@@ -139,11 +140,13 @@ class App {
   }
 
   /// 跳转到一个指定名称的页面
+  @Deprecated('使用 Get 框架的 Get.toNamed')
   static void goNamed(String routeName) {
     navKey.currentState!.pushNamed(routeName);
   }
 
   /// 回退到上一个页面
+  @Deprecated('使用 Get 框架的')
   static void back() {
     navKey.currentState!.pop();
   }
@@ -190,23 +193,3 @@ abstract class AppException implements Exception {
     return sb.toString();
   }
 }
-
-// // TODO TBD
-// class NetworkException extends AppException {
-//   final Uri? uri;
-
-//   NetworkException(this.uri, [String? message]);
-
-//   @override
-//   String toString() {
-//     StringBuffer sb = StringBuffer();
-//     sb.write('NetworkException :');
-//     if (message != null) {
-//       sb.write(': $message');
-//     }
-//     if (source != null) {
-//       sb.write(', source: $source');
-//     }
-//     return sb.toString();
-//   }
-// }

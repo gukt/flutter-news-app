@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news_app/api/news_api.dart';
 import 'package:flutter_news_app/common/extensions/context_ext.dart';
 import 'package:flutter_news_app/common/models/news_entity.dart';
-import 'package:flutter_news_app/widgets/app_news.dart';
+import 'package:flutter_news_app/widgets/app_news_channel.dart';
+import 'package:flutter_news_app/widgets/app_news_item.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
 class BookmarkPage extends StatelessWidget {
   const BookmarkPage({Key? key}) : super(key: key);

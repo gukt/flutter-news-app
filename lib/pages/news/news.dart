@@ -9,9 +9,11 @@ import 'package:flutter_news_app/common/models/news_entity.dart';
 import 'package:flutter_news_app/common/ui.dart';
 import 'package:flutter_news_app/widgets/app_button.dart';
 import 'package:flutter_news_app/widgets/app_input.dart';
-import 'package:flutter_news_app/widgets/app_news.dart';
+import 'package:flutter_news_app/widgets/app_news_channel.dart';
+import 'package:flutter_news_app/widgets/app_news_item.dart';
 import 'package:flutter_news_app/widgets/app_section.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({Key? key}) : super(key: key);
@@ -85,9 +87,9 @@ class _NewsPageState extends State<NewsPage> {
           SizedBox(height: 15.h),
           // Subscrible 按钮
           const AppTextButton(
-            Text('Subscrible'),
+            text: Text('Subscrible'),
             width: double.infinity,
-            backgroundColor: AppColors.secondarySurface,
+            backgroundColor: AppColors.primarySurface,
             foregroundColor: Colors.white,
           ),
           SizedBox(height: 29.h),
@@ -140,7 +142,7 @@ class _NewsPageState extends State<NewsPage> {
         child: Column(
           children: <Widget>[
             // 新闻分类
-            buildCategories(),
+            buildCategories(context),
             const Divider(),
             // 推荐新闻
             buildRecommended(context),

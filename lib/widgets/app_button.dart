@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news_app/common/app_colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 全局通用的按钮
 ///
 class AppTextButton extends StatelessWidget {
+  const AppTextButton({
+    Key? key,
+    this.onPressed,
+    this.text,
+    this.padding,
+    this.margin,
+    this.width,
+    this.height = 44,
+    this.backgroundColor = const Color.fromRGBO(246, 246, 246, 1),
+    this.foregroundColor = const Color.fromRGBO(45, 45, 47, 1),
+    this.borderRadius = 6.0,
+    this.borderWidth,
+    this.borderColor = const Color.fromRGBO(246, 246, 246, 1),
+  }) : super(key: key);
+
   /// 按钮上显示的文本
   final Widget? text;
 
-  /// 按钮点击事件处理
+  /// 按钮点击事件
   final VoidCallback? onPressed;
 
   /// 按钮内边距，如果为 null，则使用 [TextButton] 的默认值。
@@ -34,22 +51,6 @@ class AppTextButton extends StatelessWidget {
   final double? borderRadius;
   final double? borderWidth;
   final Color? borderColor;
-
-  const AppTextButton(
-    this.text, {
-    Key? key,
-    this.onPressed,
-    this.padding,
-    this.margin,
-    this.width,
-    this.height = 44,
-    this.backgroundColor = const Color.fromRGBO(246, 246, 246, 1),
-    this.foregroundColor = const Color.fromRGBO(45, 45, 47, 1),
-    this.borderRadius = 6.0,
-    this.borderWidth,
-    this.borderColor = const Color.fromRGBO(246, 246, 246, 1),
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,3 +68,41 @@ class AppTextButton extends StatelessWidget {
     );
   }
 }
+
+// class AppButton extends StatelessWidget {
+//   const AppButton({
+//     Key? key,
+//     this.type,
+//     required this.child,
+//     required this.onPressed,
+//   }) : super(key: key);
+
+//   final VoidCallback onPressed;
+//   final Widget child;
+//   final int? type;
+
+//   static MaterialStateProperty<T> _all<T>(T value) {
+//     return MaterialStateProperty.all(value);
+//   }
+
+//   final _blueStyle = ButtonStyle(
+//     textStyle: _all(TextStyle(fontSize: 18.sp)),
+//     backgroundColor: _all(AppColors.secondarySurface),
+//     foregroundColor: _all(Colors.white),
+//     padding: _all(EdgeInsets.symmetric(vertical: 12.h)),
+//     shape: _all<RoundedRectangleBorder>(
+//       RoundedRectangleBorder(
+//         borderRadius: BorderRadius.circular(6.w),
+//       ),
+//     ),
+//   );
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return TextButton(
+//       onPressed: onPressed,
+//       child: child,
+//       style: _blueStyle,
+//     );
+//   }
+// }

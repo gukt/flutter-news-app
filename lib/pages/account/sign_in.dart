@@ -7,10 +7,11 @@ import 'package:flutter_news_app/common/extensions/string_ext.dart';
 import 'package:flutter_news_app/common/models/user_profile.dart';
 import 'package:flutter_news_app/common/ui.dart';
 import 'package:flutter_news_app/pages/account/sign_up.dart';
-import 'package:flutter_news_app/home.dart';
+import 'package:flutter_news_app/pages/home.dart';
 import 'package:flutter_news_app/widgets/app_input.dart';
 import 'package:flutter_news_app/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../common/app.dart';
 
@@ -48,8 +49,8 @@ class _SignInState extends State<SignInPage> {
       log.d('profile', profile);
       // 保存用户信息
       App.saveUserProfile(profile);
-      // 登陆成功后, 跳转到 AppHomePage
-      App.go(const HomePage());
+      // 登陆成功, 跳到 HomePage
+      Get.to(const HomePage());
     } on DioError catch (e) {
       toast(e.error['msg']);
     }
@@ -103,18 +104,12 @@ class _SignInState extends State<SignInPage> {
         Row(
           children: <Widget>[
             AppTextButton(
-              const Text('Sign Up'),
+              text: const Text('Sign Up'),
               width: 140.w,
               backgroundColor: const Color.fromRGBO(45, 45, 47, 1),
               foregroundColor: Colors.white,
               onPressed: () {
-                // TODO 要传一下这里已经填写过的数据
-                // App.go(const SignUpPage());
-                Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (context) => const SignUpPage(),
-                  ),
-                );
+                Get.to(const SignUpPage());
               },
             ),
             const Spacer(),
@@ -160,7 +155,7 @@ class _SignInState extends State<SignInPage> {
             buildThirdLogin(context),
             // 底部 Sign Up 按钮，用于点击后跳转到注册页面
             AppTextButton(
-              const Text('Sign Up'),
+              text: const Text('Sign Up'),
               width: double.infinity,
               margin: EdgeInsets.only(bottom: 54.h),
               onPressed: () {

@@ -43,6 +43,11 @@ class NewsApi {
     return response.data ?? [];
   }
 
+  static Future<List<dynamic>> getFeatures() async {
+    var response = await dio.get('/features');
+    return response.data ?? [];
+  }
+
   /// 获取新闻频道列表
   static Future<List<String>> getPopularTags() async {
     var response = await dio.get('/popular-tags');

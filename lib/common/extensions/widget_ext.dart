@@ -19,21 +19,6 @@ extension GestureDetectorExtension on Widget {
 }
 
 extension WidgetExtensions on Widget {
-  // Container debugOutline({
-  //   Color? backgroundColor = Colors.red,
-  //   Color? outlineColor,
-  // }) {
-  //   return Container(
-  //     color: backgroundColor,
-  //     decoration: BoxDecoration(
-  //       border: Border.all(
-  //         color: outlineColor ?? Colors.red,
-  //       ),
-  //     ),
-  //     child: this,
-  //   );
-  // }
-
   Container decorate({
     EdgeInsetsGeometry? margin,
     EdgeInsetsGeometry? padding,
@@ -187,6 +172,31 @@ extension IconExtension on IconData {
       this,
       color: color,
       size: size,
+    );
+  }
+}
+
+extension ButtonStyleExtension on ButtonStyle {
+  ButtonStyle size<T>({double? width, double? height}) {
+    return copyWith(
+      fixedSize: MaterialStateProperty.all(
+        Size(
+          width ?? double.infinity,
+          height ?? double.infinity,
+        ),
+      ),
+    );
+  }
+
+  ButtonStyle get fitWidth {
+    return size(width: double.maxFinite);
+  }
+
+  ButtonStyle get fitHeight {
+    return copyWith(
+      fixedSize: MaterialStateProperty.all(
+        const Size.fromHeight(double.maxFinite),
+      ),
     );
   }
 }

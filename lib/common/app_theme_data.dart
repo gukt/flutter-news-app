@@ -3,6 +3,7 @@ import 'package:flutter_news_app/common/extensions/theme_ext.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'app_button_styles.dart';
 import 'app_colors.dart';
 
 class AppThemeData {
@@ -51,59 +52,6 @@ class AppThemeData {
       // 影响: 输入框下划线
       onSurface: Colors.cyanAccent,
     ),
-    // dividerColor:Colors.amber,
-    // accentColor: Colors.amber,
-    // accentColorBrightness: ,
-    // accelerateEasing:,
-    // accentIconTheme: ,
-    // accentTextTheme: ,
-    // floatingActionButtonTheme: ,
-    // appBarTheme: ,
-    // backgroundColor: ,
-    // bannerTheme: ,
-    // androidOverscrollIndicator: ,
-    // applyElevationOverlayColor: ,
-    // bottomAppBarColor: ,
-    // bottomAppBarTheme: ,
-    // bottomNavigationBarTheme: ,
-    // bottomSheetTheme: ,
-    // brightness: ,
-    // buttonBarTheme: ,
-    // buttonColor: ,
-    // buttonTheme: ,
-    // canvasColor: ,
-    // cardColor: ,
-    // cardTheme: ,
-    // checkboxTheme: ,
-    // chipTheme: ,
-    // colorScheme: ,
-    // cupertinoOverrideTheme: ,
-    // cursorColor: ,
-    // dataTableTheme: ,
-    // dialogBackgroundColor: ,
-    // dialogTheme: ,
-    // disabledColor: ,
-    // dividerTheme: ,
-    // drawerTheme: ,
-    // elevatedButtonTheme: ,
-    // errorColor: ,
-    // fixTextFieldOutlineLabel: ,
-    // focusColor: ,
-    // fontFamily: ,
-    // highlightColor: ,
-    // hintColor: ,
-    // hoverColor: ,
-    // iconTheme: ,
-    // indicatorColor: ,
-    // inputDecorationTheme: ,
-    // listTileTheme: ,
-    // materialTapTargetSize: ,
-    // navigationBarTheme: ,navigationRailTheme: ,
-    // outlinedButtonTheme: ,
-    // pageTransitionsTheme: ,
-    // platform: ,
-    // popupMenuTheme: ,
-    // primaryColorDark:
   );
   static ThemeData dark1 = ThemeData();
 
@@ -115,7 +63,6 @@ class AppThemeData {
     scaffoldBackgroundColor: Colors.white,
     // 默认字体
     fontFamily: 'Avenir',
-
     // AppBar 主题
     appBarTheme: AppBarTheme(
       // 整体背景色
@@ -133,7 +80,6 @@ class AppThemeData {
       iconTheme: _iconThemeData,
       actionsIconTheme: _iconThemeData,
     ),
-
     // 底部导航栏主题
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
@@ -142,7 +88,6 @@ class AppThemeData {
       showSelectedLabels: false,
       showUnselectedLabels: false,
     ),
-
     // ListTile 主题
     listTileTheme: ListTileThemeData(
       contentPadding: EdgeInsets.symmetric(
@@ -153,14 +98,12 @@ class AppThemeData {
       // 整条 tile 的背景色, 默认为透明
       tileColor: Colors.white,
     ),
-
     // 分隔符主题
     dividerTheme: DividerThemeData(
       // 将分隔符的高度设为 1, 不设置的话默认为 16，影响布局时的思考。
       space: 1.h,
       color: AppColors.dividerColor,
     ),
-
     // 设置文本主题
     textTheme: Typography()
         .black
@@ -226,33 +169,11 @@ class AppThemeData {
       },
     ),
 
-    // 文本按钮主题
     textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        // 浅蓝色文本颜色
-        textStyle: MaterialStateProperty.all(
-          TextStyle(
-            fontSize: 14.sp,
-            color: AppColors.tertiaryText,
-          ),
-        ),
-      ),
+      style: AppButtonStyles.primary,
     ),
 
-    // textButtonTheme: TextButtonThemeData(
-    //   style: ButtonStyle(
-    //     fixedSize: MaterialStateProperty.all(Size.fromHeight(44.h)),
-    //     enableFeedback: true,
-    //     // backgroundColor: MaterialStateProperty.all(AppColors.surface),
-    //     // foregroundColor: MaterialStateProperty.all(Colors.white),
-    //     shape: MaterialStateProperty.all(
-    //       RoundedRectangleBorder(
-    //         borderRadius: BorderRadius.all(Radius.circular(6.r)),
-    //         side: const BorderSide(color: Colors.green),
-    //       ),
-    //     ),
-    //   ),
-    // ),
+    // textButtonTheme: ButtonStyles.primary,
     // // 全局 icon 主题
     iconTheme: _iconThemeData,
   );

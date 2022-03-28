@@ -5,6 +5,7 @@ import 'package:flutter_news_app/common/extensions/context_ext.dart';
 import 'package:flutter_news_app/widgets/app_input.dart';
 import 'package:flutter_news_app/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
 class SearchByCategoryPage extends StatelessWidget {
   const SearchByCategoryPage({Key? key}) : super(key: key);
@@ -70,11 +71,11 @@ class SearchByCategoryPage extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(20.w),
             child: AppTextButton(
-              Text(
+              text: Text(
                 'Show news',
                 style: context.h4!.copyWith(color: Colors.white),
               ),
-              backgroundColor: AppColors.secondarySurface,
+              backgroundColor: AppColors.primarySurface,
               width: double.infinity,
             ),
           ),

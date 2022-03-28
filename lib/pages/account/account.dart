@@ -62,12 +62,12 @@ class AccountPage extends StatelessWidget {
                   Text('@boltrogers', style: context.bodyText3),
                   SizedBox(height: 24.h),
                   AppTextButton(
-                    Text(
+                    text: Text(
                       r'Get Premium - $9.99',
                       style: context.h4!.copyWith(color: Colors.white),
                     ),
                     width: double.infinity,
-                    backgroundColor: AppColors.secondarySurface,
+                    backgroundColor: AppColors.primarySurface,
                     // TODO 这里没起作用, 非要写到 text 上设置?
                     foregroundColor: Colors.white,
                   ),
