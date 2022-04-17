@@ -4,7 +4,7 @@
 
 如果你想在本地独立运行 API 服务，或将其部署到外网服务器，请参考如下文档。
 
-# Quick Start
+# Getting Started
 
 首先，进入 mock-api-server 目录。
 
