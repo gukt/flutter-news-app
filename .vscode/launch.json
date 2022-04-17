@@ -1,10 +1,19 @@
 {
     "configurations": [
         {
-            "name": "Flutter",
+            "name": "News-app (debug)",
             "type": "dart",
             "request": "launch",
             "program": "lib/main.dart"
+        },
+        {
+            "name": "News-app (profile)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "args": [
+                "--profile"
+            ]
         },
         {
             "name": "Python: Flask",
