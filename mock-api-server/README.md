@@ -1,4 +1,10 @@
-# 🚀 Quick Start
+这是为新闻 APP 写的一个模拟 API 服务，用的是 Python 的 Flask 和 Faker 模块编写。
+
+你可以在 VS Code 中运行该 API 服务，也可以独立运行它们。
+
+如果你想在本地独立运行 API 服务，或将其部署到外网服务器，请参考如下文档。
+
+# Quick Start
 
 首先，进入 mock-api-server 目录。
 
