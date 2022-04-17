@@ -66,7 +66,7 @@ $ flash run
 **注意：**服务默认监听在 127.0.0.1 这个 lookback 地址上，在真机调试时是连不上的。如果你需要真机调试时可访问，需要在启动时指定 host 参数。
 
 ```bash
-$ $ flask run --host=0.0.0.0
+$ flask run --host=0.0.0.0
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
    Use a production WSGI server instead.
@@ -78,7 +78,7 @@ $ $ flask run --host=0.0.0.0
 
 0.0.0.0 表示监听本地所有地址。
 
-**注意：**如果真机调试仍然连不上，请检查访问地址是否与该上述监听的地址在同一网段内。
+**注意：** 如果真机调试仍然连不上，请检查访问地址是否与该上述监听的地址在同一网段内。
 
 当然了，如果你将该程序部署在外网服务器上，请指定 host 为外网地址。
 
