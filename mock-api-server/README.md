@@ -46,8 +46,6 @@ It works.
 
 当看到控制台输出 `It works`，就表示运行成功了。
 
-
-
 # 📢 注意事项
 
 默认是以 debug 模式运行的。其他模式还有：development、production。
@@ -56,7 +54,7 @@ It works.
 
 ```bash
 $ export FLASK_ENV=development
-$ flash run 
+$ flash run
 ```
 
 **注意：**服务默认监听在 127.0.0.1 这个 lookback 地址上，在真机调试时是连不上的。如果你需要真机调试时可访问，需要在启动时指定 host 参数。
@@ -84,4 +82,4 @@ $ $ flask run --host=0.0.0.0
 $ flask run --host=0.0.0.0 --port 8080
 ```
 
- （完）
+（完）
