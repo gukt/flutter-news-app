@@ -46,4 +46,8 @@ app.*.map.json
 /android/app/release
 
 # Mock api python dependencies
-/mock-api/lib
+/mock-api-server/lib
+/mock-api-server/bin
+/mock-api-server/include
+/mock-api-server/pyvenv.cfg
+
