@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news_app/app/core/extensions/exports.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../core/app_config.dart';
 import '../core/theme/app_colors.dart';
+import '../core/utils/exports.dart';
 import '../data/model/news_entity.dart';
 
 /// 新闻列表项

@@ -1,14 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/app/core/extensions/exports.dart';
-import 'package:flutter_news_app/app/core/extensions/rx_ext.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../core/app_config.dart';
 import '../../core/theme/app_borders.dart';
 import '../../core/theme/app_colors.dart';
-import '../../core/ui.dart';
+import '../../core/utils/exports.dart';
 import '../../global_widgets/custom_button.dart';
 import '../../global_widgets/custom_input.dart';
 import '../../global_widgets/custom_news_channels.dart';

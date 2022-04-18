@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 import '../core/app_config.dart';
+import '../core/utils/exports.dart';
 
 /// 可横向滚动的新闻分类列表组件
 class CustomNewsCategoryList extends GetView<NewsHomeController> {
