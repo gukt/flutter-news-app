@@ -6,7 +6,7 @@ part of 'user_profile.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => UserProfile(
+UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
       json['avatar'] as String,
       json['name'] as String,
       json['twitter'] as String,
@@ -17,11 +17,11 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => UserProfile(
       DateTime.parse(json['createdAt'] as String),
       token: json['token'] as String,
       nick: json['nick'] as String,
-      channels:
-          (json['channels'] as List<dynamic>).map((e) => e as String).toList(),
+      // channels:
+      //     (json['channels'] as List<List<String>>).map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
+Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
     <String, dynamic>{
       'token': instance.token,
       'nick': instance.nick,

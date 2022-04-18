@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 class AccountController extends GetxController {
   final selectedPlanId = 0.obs;
+  final price = '9.99'.obs;
 
   @override
   void onReady() {

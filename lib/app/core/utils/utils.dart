@@ -11,47 +11,50 @@
 
 // import 'strings.dart';
 
-// abstract class Utils {
-//   static void showDialog(
-//     String? message, {
-//     String title = Strings.error,
-//     bool success = false,
-//     VoidCallback? onTap,
-//   }) =>
-//       Get.defaultDialog(
-//         barrierDismissible: false,
-//         onWillPop: () async {
-//           Get.back();
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:logger/logger.dart';
 
-//           onTap?.call();
+final Logger log = Logger();
 
-//           return true;
-//         },
-//         title: success ? Strings.success : title,
-//         content: Text(
-//           message ?? Strings.somethingWentWrong,
-//           textAlign: TextAlign.center,
-//           maxLines: 6,
-//           style: AppTextStyle.semiBoldStyle.copyWith(
-//             color: AppColors.mineShaft,
-//             fontSize: Dimens.fontSize16,
-//           ),
-//         ),
-//         confirm: Align(
-//           alignment: Alignment.centerRight,
-//           child: CustomInkwellWidget.text(
-//             onTap: () {
-//               Get.back();
+void toast(String message) {
+  EasyLoading.showToast(message);
+}
 
-//               onTap?.call();
-//             },
-//             title: Strings.ok,
-//             textStyle: AppTextStyle.buttonTextStyle.copyWith(
-//               fontSize: Dimens.fontSize18,
-//             ),
-//           ),
-//         ),
-//       );
+abstract class Utils {
+  // /// 显示对话框
+  // static void showDialog(
+  //   String? message, {
+  //   String title = Strings.error,
+  //   bool success = false,
+  //   VoidCallback? onTap,
+  // }) =>
+  //     Get.defaultDialog(
+  //       barrierDismissible: false,
+  //       onWillPop: () async {
+  //         Get.back();
+  //         onTap?.call();
+  //         return true;
+  //       },
+  //       title: success ? Strings.success : title,
+  //       content: Text(
+  //         message ?? Strings.whoops,
+  //         textAlign: TextAlign.center,
+  //         maxLines: 6,
+  //         style: TextStyle(fontSize: 26.sp),
+  //       ),
+  //       confirm: Align(
+  //         alignment: Alignment.centerRight,
+  //         child: CustomInkwellWidget.text(
+  //           onTap: () {
+  //             Get.back();
+  //             onTap?.call();
+  //           },
+  //           title: Strings.ok,
+  //           textStyle:  TextStyle(fontSize: 26.sp),
+  //         ),
+  //       ),
+  //     );
+}
 
 //   static void showIconDialog(
 //     String title,

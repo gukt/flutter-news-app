@@ -5,11 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/app_config.dart';
 import '../../data/model/news_entity.dart';
 import '../../data/providers/remote/news_api.dart';
-import '../../global_widgets/app_input.dart';
-import '../../global_widgets/app_news_channel.dart';
-import '../../global_widgets/app_news_item.dart';
-import '../../global_widgets/app_section.dart';
-import '../../global_widgets/app_tag.dart';
+import '../../global_widgets/custom_input.dart';
+import '../../global_widgets/custom_news_channels.dart';
+import '../../global_widgets/custom_news_item.dart';
+import '../../global_widgets/custom_section.dart';
+import '../../global_widgets/custom_tag.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class SearchView extends StatelessWidget {
     return Container(
       color: Colors.white,
       padding: EdgeInsets.fromLTRB(20.w, 6.h, 20.w, 10.h),
-      child: const AppTextField(
+      child: const CustomInput(
         hintText: 'Search...',
       ),
     );
@@ -28,13 +28,13 @@ class SearchView extends StatelessWidget {
   _buildTopChannels(BuildContext context) {
     return Column(
       children: [
-        AppSection(
+        CustomSection(
           title: const Text('Top channels'),
           trailing: const Text('Show All').onTap(() {
             toast('Show All taped.');
           }),
         ),
-        const AppNewsChannel(),
+        const CustomNewsChannelList(),
         const Divider(),
       ],
     );
@@ -54,7 +54,7 @@ class SearchView extends StatelessWidget {
         // }
         return Column(
           children: <Widget>[
-            AppSection(
+            CustomSection(
               title: const Text('Popular tags'),
               trailing: const Text('Show All').onTap(() {
                 toast('Show all taped.');
@@ -75,7 +75,7 @@ class SearchView extends StatelessWidget {
   _buildHotNews(BuildContext context) {
     return Column(
       children: [
-        const AppSection(
+        const CustomSection(
           title: Text('Hot news'),
           trailing: Text('Show All'),
         ),
@@ -89,7 +89,7 @@ class SearchView extends StatelessWidget {
               spacing: 15.w,
               runSpacing: 20.h,
               children: snapshot.data!.map((item) {
-                return AppNewsItem(item, style: 1);
+                return CustomNewsItem(item, style: 1);
               }).toList(),
             );
           },

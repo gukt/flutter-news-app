@@ -10,8 +10,8 @@ import '../data/model/news_entity.dart';
 ///
 /// 参数:
 /// * [style] 表示排列风格
-class AppNewsItem extends StatelessWidget {
-  const AppNewsItem(
+class CustomNewsItem extends StatelessWidget {
+  const CustomNewsItem(
     this.data, {
     Key? key,
     this.style = 0,

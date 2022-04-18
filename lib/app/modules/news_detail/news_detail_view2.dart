@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
-import '../../global_widgets/app_tag.dart';
+import '../../global_widgets/custom_tag.dart';
 
 class NewsDetailPage2 extends StatelessWidget {
   const NewsDetailPage2({Key? key}) : super(key: key);

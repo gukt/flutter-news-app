@@ -8,19 +8,13 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<HomeController>(
-        // init: MyController(),
-        // initState: (_) {},
-        builder: (_) {
-          return PageView(
+      body: Obx(() => PageView(
             controller: controller.pageController.value,
             onPageChanged: controller.handlePageChanged,
             children: controller.pages,
-          );
-        },
-      ),
+          )),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: controller.currentIndex.value,
+        currentIndex: controller.pageIndex.value,
         onTap: controller.handlePageChanged,
         items: controller.navItems,
       ),

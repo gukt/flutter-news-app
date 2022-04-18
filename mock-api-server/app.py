@@ -54,7 +54,7 @@ def sign_in():
             # Twitter 账号名
             twitter=fake.first_name().lower(),
             # 邮箱
-            email=fake.ascii_email(),
+            name=fake.ascii_email(),
             # 已收藏新闻个数
             bookmarkNum=fake.random_digit(),
             # 消息个数

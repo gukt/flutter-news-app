@@ -5,7 +5,7 @@ import '../core/theme/app_colors.dart';
 
 /// 全局通用的文本输入框
 ///
-class AppTextField extends StatefulWidget {
+class CustomInput extends StatefulWidget {
   /// 没有内容时显示的提示信息
   final String? hintText;
 
@@ -18,8 +18,8 @@ class AppTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final Color? backgroundColor;
 
-  /// 创建一个 [AppTextField] 实例
-  const AppTextField({
+  /// 创建一个 [CustomInput] 实例
+  const CustomInput({
     Key? key,
     this.hintText,
     this.controller,
@@ -29,15 +29,15 @@ class AppTextField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<AppTextField> createState() => _AppTextFieldState();
+  State<CustomInput> createState() => _CustomInputState();
 }
 
-class _AppTextFieldState extends State<AppTextField> {
+class _CustomInputState extends State<CustomInput> {
   var passwordVisible = false;
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('AppTextField is building...');
+    debugPrint('CustomInput is building...');
 
     var suffixIcon = widget.keyboardType == TextInputType.visiblePassword
         ? IconButton(

@@ -10,6 +10,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../app_config.dart';
+import '../app_initializer.dart';
+import 'utils.dart';
 
 Dio dio = init();
 Dio init() {
@@ -42,7 +44,7 @@ Dio init() {
   _addInterceptors(dio);
 
   // 添加代理支持，方便抓包调试
-  if (debugMode && proxyEnabled) {
+  if (debug && proxyEnabled) {
     _supportsProxy(dio, 'PROXY localhost:8888');
   }
   return dio;

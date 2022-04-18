@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/app/core/extensions/exports.dart';
 
-class AppSection extends StatelessWidget {
-  const AppSection({
+class CustomSection extends StatelessWidget {
+  const CustomSection({
     Key? key,
     this.padding,
     this.leading,

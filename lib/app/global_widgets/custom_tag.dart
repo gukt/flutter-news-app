@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/theme/app_colors.dart';
 
-class AppTag extends StatelessWidget {
+class CustomTag extends StatelessWidget {
   final String data;
-  const AppTag(this.data, {Key? key}) : super(key: key);
+  const CustomTag(this.data, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class AppTagList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> widgets = tags.map<Widget>((e) => AppTag(e)).toList();
+    List<Widget> widgets = tags.map<Widget>((e) => CustomTag(e)).toList();
     return inline
         ? SingleChildScrollView(
             scrollDirection: Axis.horizontal,

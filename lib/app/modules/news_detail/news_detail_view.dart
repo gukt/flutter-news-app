@@ -3,7 +3,7 @@ import 'package:flutter_news_app/app/core/extensions/exports.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/theme/app_colors.dart';
-import '../../global_widgets/app_section.dart';
+import '../../global_widgets/custom_section.dart';
 
 class NewsDetailView extends StatelessWidget {
   const NewsDetailView({Key? key}) : super(key: key);
@@ -77,7 +77,7 @@ I thought, my research might help people to do that. I did what academics are in
   _buildMore(BuildContext context) {
     return Column(
       children: <Widget>[
-        const AppSection(
+        const CustomSection(
           title: Text('More in lifestyle'),
           trailing: Text('Show All'),
         ),

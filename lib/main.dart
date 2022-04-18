@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_news_app/app/core/app_initializer.dart';
 import 'package:flutter_news_app/app/routes/app_pages.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
+import 'app/core/app_initializer.dart';
+import 'app/core/intl/app_translations.dart';
 import 'app/core/theme/app_theme.dart';
-import 'app/core/strings.dart';
-import 'app/modules/home/home_view.dart';
-import 'app/modules/root_binding.dart';
+import 'app/core/initial_binding.dart';
+import 'app/core/utils/exports.dart';
 
 void main() {
-  runApp(const NewsApp());
+  AppInitializer.init().then((_) {
+    runApp(const NewsApp());
+  });
 }
 
 /// 新闻 App
@@ -29,14 +34,25 @@ class NewsApp extends StatelessWidget {
       designSize: const Size(375, 812 - 44 - 32),
       builder: () {
         return GetMaterialApp(
-          initialRoute: AppPages.INITIAL,
-          title: Strings.appTitle,
+          initialRoute: AppRoutes.home,
+
+          initialBinding: InitialBinding(),
+          getPages: AppPages.pages,
+
+          // 使用的字典类
+          translations: AppTranslations(),
+          // 使用的本地语言
+          // locale: Get.deviceLocale,
+          locale: const Locale('en', 'US'),
+          // 出错后的回退语言
+          fallbackLocale: const Locale('zh', 'CN'),
+
           theme: AppTheme.light,
           darkTheme: AppTheme.dark1,
           // 当同时设置了 [theme] 和 [darkTheme] 主题时，决定使用哪个主题
           themeMode: ThemeMode.light,
-          initialBinding: RootBinding(),
-          getPages: AppPages.pages,
+
+          title: Messages.appName.tr,
           // home: const HomeView(),
           builder: EasyLoading.init(),
         );

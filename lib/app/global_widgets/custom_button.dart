@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 /// 全局通用的按钮
 ///
-class AppTextButton extends StatelessWidget {
-  const AppTextButton({
+class CustomTextButton extends StatelessWidget {
+  const CustomTextButton({
     Key? key,
-    this.onPressed,
+    this.onTaped,
     this.text,
     this.padding,
     this.margin,
@@ -22,7 +22,7 @@ class AppTextButton extends StatelessWidget {
   final Widget? text;
 
   /// 按钮点击事件
-  final VoidCallback? onPressed;
+  final VoidCallback? onTaped;
 
   /// 按钮内边距，如果为 null，则使用 [TextButton] 的默认值。
   final EdgeInsetsGeometry? padding;
@@ -56,7 +56,7 @@ class AppTextButton extends StatelessWidget {
       height: height,
       width: width,
       child: TextButton(
-        onPressed: onPressed,
+        onPressed: onTaped,
         child: text ?? const Text('Button'),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(backgroundColor),

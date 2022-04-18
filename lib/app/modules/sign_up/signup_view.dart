@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/app/core/extensions/exports.dart';
+import 'package:flutter_news_app/app/core/values/messages.dart';
+import 'package:flutter_news_app/app/routes/app_pages.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../core/theme/app_colors.dart';
-import '../../core/ui.dart';
-import '../../global_widgets/app_button.dart';
-import '../../global_widgets/app_input.dart';
+import '../../global_widgets/custom_button.dart';
+import '../../global_widgets/custom_input.dart';
+import '../../global_widgets/custom_third_login.dart';
+import 'signup_controller.dart';
 
-class SignUpView extends StatelessWidget {
+/// 注册页面
+class SignUpView extends GetView<SignupController> {
   const SignUpView({Key? key}) : super(key: key);
 
   @override
@@ -17,7 +22,7 @@ class SignUpView extends StatelessWidget {
           // backgroundColor: Colors.transparent,
           elevation: 1,
           shadowColor: const Color.fromRGBO(230, 230, 231, 1),
-          title: const Text('Sign up page'),
+          title: Text(Messages.txtSignUp.tr),
           // shadowColor: Colors.red,
           actions: [
             IconButton(
@@ -31,22 +36,22 @@ class SignUpView extends StatelessWidget {
         child: Column(
           children: [
             // const Divider(),
-            Text('Sign up', style: context.h3),
+            Text(Messages.txtSignUp.tr, style: context.h3),
             SizedBox(height: 50.h),
-            const AppTextField(
-              hintText: 'Full name',
+            CustomInput(
+              hintText: Messages.hintFullName.tr,
             ),
             SizedBox(height: 15.h),
-            const AppTextField(
-              hintText: 'Email',
+            CustomInput(
+              hintText: Messages.hintEmail.tr,
             ),
             SizedBox(height: 15.h),
-            const AppTextField(
-              hintText: 'Password',
+            CustomInput(
+              hintText: Messages.hintPassword.tr,
             ),
             SizedBox(height: 15.h),
-            AppTextButton(
-              text: Text('Create an account', style: context.h4),
+            CustomTextButton(
+              text: Text(Messages.txtCreateAccount.tr, style: context.h4),
               backgroundColor: AppColors.primarySurface,
               foregroundColor: Colors.white,
               width: double.infinity,
@@ -59,12 +64,12 @@ class SignUpView extends StatelessWidget {
               TextSpan(text: 'Conditions of Use', style: context.linkText),
             ])),
             const Spacer(),
-            buildThirdLogin(context),
+            const CustomThirdLogin(),
             SizedBox(height: 20.h),
-            AppTextButton(
-              text: const Text('I have an account'),
+            CustomTextButton(
+              text: Text(Messages.txtHaveAccount.tr),
               width: double.infinity,
-              onPressed: () {},
+              onTaped: () => Get.offNamed(AppRoutes.signIn),
             )
           ],
         ),

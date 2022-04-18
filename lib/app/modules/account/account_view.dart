@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/app/core/extensions/exports.dart';
+import 'package:flutter_news_app/app/modules/account/account_controller.dart';
+import 'package:flutter_news_app/app/routes/app_pages.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
-import '../../core/app_config.dart';
 import '../../core/theme/app_borders.dart';
 import '../../core/theme/app_colors.dart';
-import '../../global_widgets/app_button.dart';
+import '../../global_widgets/custom_button.dart';
 
-class AccountView extends StatelessWidget {
+class AccountView extends GetView<AccountController> {
   const AccountView({Key? key}) : super(key: key);
 
   @override
@@ -20,10 +22,8 @@ class AccountView extends StatelessWidget {
         title: const Text('Account'),
         actions: [
           IconButton(
-            onPressed: () {
-              toast('点击跳到编辑页');
-            },
-            icon: const Icon(Icons.edit),
+            onPressed: () => Get.toNamed(AppRoutes.accountEdit),
+            icon: const Icon(Icons.edit_note),
           ),
         ],
       ),
@@ -62,7 +62,8 @@ class AccountView extends StatelessWidget {
                   SizedBox(height: 10.h),
                   Text('@boltrogers', style: context.bodyText3),
                   SizedBox(height: 24.h),
-                  AppTextButton(
+                  CustomTextButton(
+                    onTaped: () => Get.toNamed(AppRoutes.accountEdit),
                     text: Text(
                       r'Get Premium - $9.99',
                       style: context.h4!.copyWith(color: Colors.white),
@@ -130,7 +131,7 @@ class AccountView extends StatelessWidget {
             SizedBox(height: 10.h),
 
             ListTile(
-              onTap: () {},
+              onTap: () => Get.offNamed(AppRoutes.signIn),
               title: Text('Log out', style: context.h4),
               trailing: _arrowIcon,
             ),

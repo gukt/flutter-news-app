@@ -5,8 +5,8 @@ import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../data/providers/remote/news_api.dart';
-import '../../global_widgets/app_input.dart';
-import '../../global_widgets/widgets.dart';
+import '../../global_widgets/custom_button.dart';
+import '../../global_widgets/custom_input.dart';
 
 class SearchByCategoryView extends StatelessWidget {
   const SearchByCategoryView({Key? key}) : super(key: key);
@@ -41,7 +41,7 @@ class SearchByCategoryView extends StatelessWidget {
           Container(
             color: Colors.white,
             padding: EdgeInsets.fromLTRB(20.w, 6.h, 20.w, 10.h),
-            child: const AppTextField(
+            child: const CustomInput(
               hintText: 'Search...',
             ),
           ),
@@ -71,7 +71,7 @@ class SearchByCategoryView extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.all(20.w),
-            child: AppTextButton(
+            child: CustomTextButton(
               text: Text(
                 'Show news',
                 style: context.h4!.copyWith(color: Colors.white),

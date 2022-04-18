@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/app/core/extensions/exports.dart';
+import 'package:flutter_news_app/app/core/extensions/rx_ext.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -8,29 +9,37 @@ import '../../core/app_config.dart';
 import '../../core/theme/app_borders.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui.dart';
-import '../../global_widgets/app_button.dart';
-import '../../global_widgets/app_input.dart';
-import '../../global_widgets/app_news_channel.dart';
-import '../../global_widgets/app_news_item.dart';
-import '../../global_widgets/app_section.dart';
+import '../../global_widgets/custom_button.dart';
+import '../../global_widgets/custom_input.dart';
+import '../../global_widgets/custom_news_channels.dart';
+import '../../global_widgets/custom_news_item.dart';
+import '../../global_widgets/custom_section.dart';
+import '../../global_widgets/custom_news_categories.dart';
 import 'news_home_controller.dart';
 
 class NewsHomePage extends GetView<NewsHomeController> {
   const NewsHomePage({Key? key}) : super(key: key);
 
   _buildNewsList() {
-    return GetX<NewsHomeController>(
-      builder: (controller) {
-        if (controller.newsItems.isEmpty) {
-          return const Text('Faild to load news.');
+    // return controller.newsList.watch(
+    //   () {
+    //     return const Text('News list');
+    //   },
+    //   onLoading: const Text('正在加载'),
+    // );
+
+    return Obx(
+      () {
+        if (controller.newsList.isEmpty) {
+          return const Text('Loading...');
         }
         var widgets = <Widget>[];
-        // 调用 asMap() 以便能渠道 index
+        // 调用 asMap().forEach() 以便取到 index
         controller.newsItems.asMap().forEach((index, value) {
-          widgets.add(AppNewsItem(value));
+          widgets.add(CustomNewsItem(value));
           if (index == 2) {
             widgets
-              // 第三条新闻追加一条广告
+              // 第三条新闻后追加一条广告
               ..add(_buildAd())
               // 广告下面带分隔符
               ..add(const Divider());
@@ -67,7 +76,7 @@ class NewsHomePage extends GetView<NewsHomeController> {
       padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 25.h),
       child: Column(
         children: [
-          AppSection(
+          CustomSection(
             padding: EdgeInsets.symmetric(vertical: 20.w),
             title: const Text('Newsletter'),
             trailing: const Icon(
@@ -76,13 +85,13 @@ class NewsHomePage extends GetView<NewsHomeController> {
             ),
           ),
           // 订阅邮箱输入框
-          const AppTextField(
+          const CustomInput(
             hintText: 'Email',
             backgroundColor: Colors.white,
           ),
           SizedBox(height: 15.h),
           // Subscrible 按钮
-          const AppTextButton(
+          const CustomTextButton(
             text: Text('Subscrible'),
             width: double.infinity,
             backgroundColor: AppColors.primarySurface,
@@ -138,13 +147,21 @@ class NewsHomePage extends GetView<NewsHomeController> {
         child: Column(
           children: <Widget>[
             // 新闻分类
-            buildCategories(context),
+            const CustomNewsCategoryList(),
             const Divider(),
             // 推荐新闻
-            buildRecommended(context),
+            Obx(
+              () {
+                if (controller.recommendedNews.value == null) {
+                  return const Text('No recommended news');
+                }
+                return CustomNewsItem(controller.recommendedNews.value!,
+                    style: 1);
+              },
+            ),
             const Divider(),
             // 频道列表
-            const AppNewsChannel(),
+            const CustomNewsChannelList(),
             const Divider(),
             // 新闻列表
             _buildNewsList(),

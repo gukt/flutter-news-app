@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/utils/iconfonts.dart';
+import '../account/account_view.dart';
 import '../account_edit/account_edit_view.dart';
 import '../bookmark/bookmark_view.dart';
 import '../news_home/news_home_view.dart';
@@ -13,7 +14,7 @@ class HomeController extends GetxController {
     const NewsHomePage(),
     const SearchByCategoryView(),
     const BookmarkView(),
-    const AccountEditView(),
+    const AccountView(),
   ]);
 
   // 底部导航栏对应的四个导航项
@@ -24,17 +25,17 @@ class HomeController extends GetxController {
     BottomNavigationBarItem(label: 'Account', icon: Icon(IconFonts.me)),
   ]);
 
-  var currentIndex = 0.obs;
-  late Rx<PageController> pageController;
+  var pageIndex = 2.obs;
+  var pageController = PageController().obs;
 
   void handlePageChanged(int index) {
-    currentIndex.value = index;
+    pageIndex.value = index;
   }
 
   @override
   void onInit() {
     super.onInit();
-    pageController.value = PageController(initialPage: currentIndex.value);
+    pageController.value = PageController(initialPage: pageIndex.value);
   }
 
   @override

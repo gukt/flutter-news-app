@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'user_profile.g.dart';
 
 @JsonSerializable()
-class UserProfile {
+class UserEntity {
   final String token;
   final String nick;
   final String avatar;
@@ -14,13 +14,13 @@ class UserProfile {
   final int memberPlan;
   final DateTime memberExpiredAt;
   final DateTime createdAt;
-  final List<String> channels;
+  final List<List<String>>? channels;
 
-  UserProfile(this.avatar, this.name, this.twitter, this.bookmarkNum,
+  UserEntity(this.avatar, this.name, this.twitter, this.bookmarkNum,
       this.mailNum, this.memberPlan, this.memberExpiredAt, this.createdAt,
-      {required this.token, required this.nick, required this.channels});
+      {required this.token, required this.nick, this.channels});
 
-  factory UserProfile.fromJson(Map<String, dynamic> json) =>
-      _$UserProfileFromJson(json);
-  Map<String, dynamic> toJson() => _$UserProfileToJson(this);
+  factory UserEntity.fromJson(Map<String, dynamic> json) =>
+      _$UserEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$UserEntityToJson(this);
 }

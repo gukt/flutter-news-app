@@ -5,8 +5,8 @@ import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
 import '../../data/model/news_entity.dart';
 import '../../data/providers/remote/news_api.dart';
-import '../../global_widgets/app_news_channel.dart';
-import '../../global_widgets/app_news_item.dart';
+import '../../global_widgets/custom_news_channels.dart';
+import '../../global_widgets/custom_news_item.dart';
 
 class BookmarkView extends StatelessWidget {
   const BookmarkView({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class BookmarkView extends StatelessWidget {
           } else {
             _style = 0;
           }
-          _widgets.add(AppNewsItem(item, style: _style));
+          _widgets.add(CustomNewsItem(item, style: _style));
         });
         return Column(children: _widgets);
       },
@@ -59,7 +59,7 @@ class BookmarkView extends StatelessWidget {
               child: Text('Bookmarks', style: context.h2),
             ),
             const Divider(),
-            const AppNewsChannel(),
+            const CustomNewsChannelList(),
             const Divider(),
             _buildNewsList(),
           ],

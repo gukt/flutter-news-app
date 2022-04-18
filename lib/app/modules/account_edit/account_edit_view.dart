@@ -1,40 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/app/core/extensions/exports.dart';
+import 'package:flutter_news_app/app/modules/account/account_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../core/theme/app_colors.dart';
-import '../../global_widgets/app_button.dart';
-import '../account/local_widgets/account_plan_widget.dart';
+import '../../global_widgets/custom_button.dart';
+import '../../routes/app_pages.dart';
+import 'local_widgets/choose_plan_widget.dart';
 
-class AccountEditView extends StatelessWidget {
+class AccountEditView extends GetView<AccountController> {
   const AccountEditView({Key? key}) : super(key: key);
-
-  // 付费计划
-  _buildPlans(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Expanded(
-          child: AccountPlanCard(
-            id: 0,
-            period: 'Month',
-            price: '9.99',
-            info: 'Billed every month',
-          ),
-        ),
-        // 固定间隔, 左右两个付费计划 (flex = 1)
-        SizedBox(width: 15.w),
-        const Expanded(
-          child: AccountPlanCard(
-            id: 1,
-            period: 'Year',
-            price: '4.99/mo',
-            info: 'Billed every 12 months',
-          ),
-        ),
-      ],
-    );
-  }
 
   _buildListTiles(BuildContext context) {
     const _arrowIcon = Icon(Icons.keyboard_arrow_right);
@@ -120,7 +96,7 @@ class AccountEditView extends StatelessWidget {
         ),
         SizedBox(height: 10.h),
         ListTile(
-          onTap: () {},
+          onTap: () => Get.offNamed(AppRoutes.signIn),
           title: Text('Log out', style: context.h4),
           trailing: _arrowIcon,
         ),
@@ -152,16 +128,7 @@ class AccountEditView extends StatelessWidget {
             title: Text('Choose your plain', style: context.h4),
             trailing: const Icon(Icons.info_outline),
           ),
-          _buildPlans(context),
-          SizedBox(height: 15.h),
-          AppTextButton(
-            text: Text(
-              r'Get Premium - $9.99',
-              style: context.h4!.copyWith(color: Colors.white),
-            ),
-            width: double.infinity,
-            backgroundColor: AppColors.primarySurface,
-          ),
+          const CustomChoosePlan(),
           _buildListTiles(context),
         ],
       ),

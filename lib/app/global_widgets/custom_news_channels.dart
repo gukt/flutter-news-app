@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import '../core/theme/app_borders.dart';
 import '../modules/news_home/news_home_controller.dart';
 
-class AppNewsChannel extends StatelessWidget {
-  const AppNewsChannel({Key? key}) : super(key: key);
+class CustomNewsChannelList extends StatelessWidget {
+  const CustomNewsChannelList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
